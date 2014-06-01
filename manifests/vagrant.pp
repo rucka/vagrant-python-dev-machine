@@ -3,6 +3,10 @@ $PROJ_DIR = "/home/vagrant/src"
 info("started vagrant provisioning")
 info("project dir is $PROJ_DIR")
 
+Exec {
+    path => "/usr/local/bin:/usr/bin:/usr/sbin:/bin",
+}
+
 class init {
     exec { "update-apt":
         command => "sudo apt-get update",
@@ -11,7 +15,7 @@ class init {
     package {
         ["python", "python-dev", "python-pip"]:
         ensure => latest,
-        require => Exec['updage-apt']
+        require => Exec['update-apt']
     }
 }
 
