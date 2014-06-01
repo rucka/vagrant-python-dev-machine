@@ -14,9 +14,17 @@ class init {
     }
 
     package {
-        ["python", "python-dev", "python-pip"]:
+        ["python", "python-dev", "python-pip", "vim"]:
         ensure => latest,
         require => Exec['update-apt']
+    }
+
+    exec { "pip-install-requirements":
+        command => "sudo /usr/bin/pip install -r $PROJ_DIR/requirements.txt",
+        tries => 2,
+        timeout => 600,
+        require => Package['python-pip', 'python-dev'],
+        logoutput => on_failure,
     }
 }
 
