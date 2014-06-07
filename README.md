@@ -1,4 +1,4 @@
-#Vagrant python dev machint
+#Vagrant python dev machine
 
 Vagrant setup for developing python projects
 
