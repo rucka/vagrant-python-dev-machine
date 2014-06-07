@@ -14,7 +14,7 @@ class init {
     }
 
     package {
-        ["python", "python-dev", "python-pip", "vim"]:
+        ["python", "python-dev", "python-pip", "vim", "git"]:
         ensure => latest,
         require => Exec['update-apt']
     }
@@ -25,6 +25,14 @@ class init {
         timeout => 600,
         require => Package['python-pip', 'python-dev'],
         logoutput => on_failure,
+    }
+
+    exec { "run-tests":
+        command => "python -m discover -p '*Fixture.py' -s 'src/'",
+        tries => 2,
+        timeout => 600,
+        require => Exec['pip-install-requirements'],
+        logoutput => true,
     }
 }
 
