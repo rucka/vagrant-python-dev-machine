@@ -9,3 +9,4 @@ Vagrant setup for developing python projects
 - Clone this repo
 - Run `vagrant up` from the root of the cloned repo.
 - This will automatically python unit test for a dummy class.
+- If all it's ok run 'vagrant ssh' and enjoy python coding!
